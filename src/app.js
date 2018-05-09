@@ -15,10 +15,10 @@ window.getWinner = function (gameBoard) {
   };
 
   var checkWinner = function(array) {
-    if (array.every(isWinnerX)) {
+    if (array.every(isWinnerX) && Winner === null) {
       alert('Winner X!');
       Winner = 'X';
-    } else if ( array.every(isWinnerO) ) {
+    } else if (array.every(isWinnerO) && Winner === null) {
       alert('Winner O!');
       Winner = 'O';
     }
