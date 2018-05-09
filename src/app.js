@@ -1,9 +1,10 @@
-window.getWinner = function (matrix) {
+window.getWinner = function (gameBoard) {
   var i;
   var j;
   var RowArray = [];
   var DiagonalArray = [];
   var BackDiagonalArray = [];
+  var Winner = null;
 
   var isWinnerX = function(element) {
     return element === 'X';
@@ -16,31 +17,35 @@ window.getWinner = function (matrix) {
   var checkWinner = function(array) {
     if (array.every(isWinnerX)) {
       alert('Winner X!');
+      Winner = 'X';
     } else if ( array.every(isWinnerO) ) {
       alert('Winner O!');
+      Winner = 'O';
     }
   };
 
-  for (i = 0; i < matrix.length; i++) {
-    checkWinner(matrix[i]);
+  for (i = 0; i < gameBoard.length; i++) {
+    checkWinner(gameBoard[i]);
   }
 
-  for (j = 0; j < matrix.length; j++) {
+  for (j = 0; j < gameBoard.length; j++) {
     RowArray = [];
-    for (i = 0; i < matrix.length; i++) {
-      RowArray.push(matrix[i][j]);
+    for (i = 0; i < gameBoard.length; i++) {
+      RowArray.push(gameBoard[i][j]);
     }
     checkWinner(RowArray);
   }
 
-  for (i = 0, j = 0; i < matrix.length; i++, j++) {
-    DiagonalArray.push(matrix[i][j]);
+  for (i = 0, j = 0; i < gameBoard.length; i++, j++) {
+    DiagonalArray.push(gameBoard[i][j]);
   }
 
-  for (i = 0, j = matrix.length - 1; i < matrix.length; i++, j--) {
-    BackDiagonalArray.push(matrix[i][j]);
+  for (i = 0, j = gameBoard.length - 1; i < gameBoard.length; i++, j--) {
+    BackDiagonalArray.push(gameBoard[i][j]);
   }
 
   checkWinner(DiagonalArray);
   checkWinner(BackDiagonalArray);
+
+  return Winner;
 };
