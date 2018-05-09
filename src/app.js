@@ -1,7 +1,9 @@
 window.getWinner = function (matrix) {
-  var RowArray =[];
-  var DiagonalArray =[];
-  var BackDiagonalArray =[];
+  var i;
+  var j;
+  var RowArray = [];
+  var DiagonalArray = [];
+  var BackDiagonalArray = [];
 
   var isWinnerX = function(element) {
     return element === 'X';
@@ -11,16 +13,16 @@ window.getWinner = function (matrix) {
     return element === 'O';
   };
 
-  var CheckWinner = function(array) {
+  var checkWinner = function(array) {
     if (array.every(isWinnerX)) {
       alert('Winner X!');
-    } else if (array.every(isWinnerO)){
+    } else if ( array.every(isWinnerO) ) {
       alert('Winner O!');
     }
   };
 
   for (i = 0; i < matrix.length; i++) {
-    CheckWinner(matrix[i]);
+    checkWinner(matrix[i]);
   }
 
   for (j = 0; j < matrix.length; j++) {
@@ -28,7 +30,7 @@ window.getWinner = function (matrix) {
     for (i = 0; i < matrix.length; i++) {
       RowArray.push(matrix[i][j]);
     }
-    CheckWinner(RowArray);
+    checkWinner(RowArray);
   }
 
   for (i = 0, j = 0; i < matrix.length; i++, j++) {
@@ -39,6 +41,6 @@ window.getWinner = function (matrix) {
     BackDiagonalArray.push(matrix[i][j]);
   }
 
-  CheckWinner(DiagonalArray);
-  CheckWinner(BackDiagonalArray);
+  checkWinner(DiagonalArray);
+  checkWinner(BackDiagonalArray);
 };
